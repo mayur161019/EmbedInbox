@@ -61,7 +61,7 @@ const SendEmailPage = () => {
 
   return (
     <div className="max-w-lg mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Send Email</h1>
+      <h1 className="text-2xl font-bold mb-4">Add Email</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
@@ -119,7 +119,7 @@ const SendEmailPage = () => {
           className={`w-full p-2 rounded ${isLoading ? "bg-gray-400" : "bg-blue-500 text-white"}`}
           disabled={isLoading}
         >
-          {isLoading ? "Sending..." : "Send Email"}
+          {isLoading ? "Adding..." : "Add"}
         </button>
       </form>
     </div>

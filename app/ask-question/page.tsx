@@ -7,6 +7,7 @@ export default function AskQuestionPage() {
   const [answer, setAnswer] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [email_address, setEmail] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +21,7 @@ export default function AskQuestionPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({ question, email_address }),
       });
 
       const data = await response.json();
@@ -54,6 +55,18 @@ export default function AskQuestionPage() {
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             rows={4}
+          />
+        </div>
+        <div className="mb-5">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Your Email:
+          </label>
+          <input
+            type="email"
+            value={email_address}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
         <button

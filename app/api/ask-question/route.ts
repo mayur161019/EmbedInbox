@@ -11,7 +11,8 @@ const supabase: SupabaseClient = createClient(
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
-    const { question } = await request.json();
+    const { question, email_address } = await request.json();
+    console.log("Received email address:", email_address);
 
     // Step 1: Convert the question into an embedding
     const openai = new OpenAI();
@@ -29,7 +30,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         query_embedding: questionEmbedding,
         match_threshold: -0.3,
         match_count: 10, // Number of relevant emails to retrieve
-        email_address: "info@azure.com", // Add the filter for a specific email
+        email_address: email_address, // Use the dynamic email_address from the request
       }
     );
 
